@@ -13,9 +13,9 @@
 		<h1 class="title">TheStatMaster</h1>
 	</div>
 	<div class="main-content-container">
-		<form>
-			<input type="text" name="player" autofocus required>
-			<select name="stats-type" id="stats-type">
+		<form class="player-form">
+			<input type="text" name="player" class="player" autofocus required>
+			<select name="stats-type" class="stats-type">
 				<option value="passing">Passing</option>
 				<option value="rushing">Rushing</option>
 				<option value="receiving">Receiving</option>
@@ -23,7 +23,7 @@
 				<option value="punting">Punting</option>
 				<option value="returning">Returning</option>
 			</select>
-			<select name="year-from" id="year-from">
+			<select name="year-from" class="year-from">
 				<option value="2009">2009</option>
 				<option value="2010">2010</option>
 				<option value="2011">2011</option>
@@ -31,7 +31,7 @@
 				<option value="2013">2013</option>
 				<option value="2014">2014</option>
 			</select>
-			<select name="year-to" id="year-to">
+			<select name="year-to" class="year-to">
 				<option value="2009">2009</option>
 				<option value="2010">2010</option>
 				<option value="2011">2011</option>
@@ -39,7 +39,7 @@
 				<option value="2013">2013</option>
 				<option value="2014">2014</option>
 			</select>
-			<input type="submit" value="Enter">
+			<input type="submit" value="Enter" class="add-player">
 		</form>
 	</div>
 </body>
