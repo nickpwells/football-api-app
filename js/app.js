@@ -21,14 +21,52 @@ $(document).ready(function(){
 					stats[week] = {};
 
 					//checks if player has referenced stats for the current week.  if yes, will populate stats object with appropriate stats
-					if (player_id.hasOwnProperty('passing')) {stats[week]["passing"] = [passingObj.attempts, passingObj.completions, passingObj.yards, passingObj.touchdowns, passingObj.interceptions];}
-					if (player_id.hasOwnProperty('rushing')) {stats[week]["rushing"] = [rushingObj.attempts, rushingObj.yards, rushingObj.touchdowns, rushingObj.long];}
-					if (player_id.hasOwnProperty('receiving')) {stats[week]["receiving"] = [receivingObj.receptions, receivingObj.yards, receivingObj.touchdowns, receivingObj.long];}
+					if (player_id.hasOwnProperty('passing')) {
+						stats[week]["passing"] = [passingObj.attempts, passingObj.completions, passingObj.yards, passingObj.touchdowns, passingObj.interceptions];
+					}
+					else {
+						stats[week]["passing"] = [0,0,0,0,0];
+					}
+
+					if (player_id.hasOwnProperty('rushing')) {
+						stats[week]["rushing"] = [rushingObj.attempts, rushingObj.yards, rushingObj.touchdowns, rushingObj.long];
+					}
+					else {
+						stats[week]["rushing"] = [0,0,0,0];
+					}
+
+					if (player_id.hasOwnProperty('receiving')) {
+						stats[week]["receiving"] = [receivingObj.receptions, receivingObj.yards, receivingObj.touchdowns, receivingObj.long];
+					}
+					else {
+						stats[week]["receiving"] = [0,0,0,0];
+					}
+
 					i += 1;
 				});
 			});
 		}
     	}
     );
+
+	function generateTable (text){
+		var r = document.createElement('tr');
+		var c = document.createElement('td');
+		var t = document.createTextNode(text);
+
+		this.cell = c.appendChild(t);
+		this.row = r.appendChild(this.cell);
+
+		document.getElementById('stats-table').appendChild(this.row);
+
+	}
+
 	console.log(stats);
+
+	$.each(stats, function(key, week){
+		$.each(week, function(key, value){
+			alert(key + ": " + value);
+		})
+	});
+	
 });

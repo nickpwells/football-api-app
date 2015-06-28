@@ -15,10 +15,11 @@ body {
 	color: #ffffff;
 }
 
-.main-content-container {
+.main-content-container * {
 	width: 75%;
 	text-align: center;
 	margin: 2em auto 0 auto;
+	display: none;
 }
 
 .main-content-container .player-form {
@@ -39,4 +40,10 @@ body {
 .main-content-container .player-form .player:focus,
 .main-content-container .player-form select:focus{
 	outline: none;
+}
+
+#stats-table,
+tr,
+th {
+	border: 1px solid black;
 }
