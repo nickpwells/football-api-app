@@ -5,6 +5,7 @@
 	<title>API Intro</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/stylesheet.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto|Roboto+Slab' rel='stylesheet' type='text/css'>
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="js/app.js"></script>
 </head>
@@ -12,37 +13,25 @@
 	<div class="title-container">
 		<h1 class="title">TheStatMaster</h1>
 	</div>
-	<div class="main-content-container">
+	<div class="container">
 		<form class="player-form">
-			<input type="text" name="player" class="player" autofocus required>
-			<select name="stats-type" class="stats-type">
-				<option value="passing">Passing</option>
-				<option value="rushing">Rushing</option>
-				<option value="receiving">Receiving</option>
-				<option value="kicking">Kicking</option>
-				<option value="punting">Punting</option>
-				<option value="returning">Returning</option>
+			<input type="text" name="player" class="player" autofocus required><br>
+			<select name="season-type" class="season-type">
+				<option value="passing">Pre-Season</option>
+				<option value="rushing">Regular Season</option>
+				<option value="receiving">Post-Season</option>
 			</select>
-			<select name="year-from" class="year-from">
+			<select name="year" class="year">
 				<option value="2009">2009</option>
 				<option value="2010">2010</option>
 				<option value="2011">2011</option>
 				<option value="2012">2012</option>
 				<option value="2013">2013</option>
 				<option value="2014">2014</option>
-			</select>
-			<select name="year-to" class="year-to">
-				<option value="2009">2009</option>
-				<option value="2010">2010</option>
-				<option value="2011">2011</option>
-				<option value="2012">2012</option>
-				<option value="2013">2013</option>
-				<option value="2014">2014</option>
-			</select>
+			</select><br>
 			<input type="submit" value="Enter" class="add-player">
 		</form>
-	</div>
-	<table id = "stats-table">
+		<table id = "stats-table" display="none">
 		<tr>
 			<th>Week</th>
 			<th colspan="5">Passing</th>
@@ -66,5 +55,6 @@
 			<th>Long</th>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>

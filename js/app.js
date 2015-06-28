@@ -66,7 +66,7 @@ $(document).ready(function(){
 	$.each(stats, function(key, week){
 		$.each(week, function(key, value){
 			alert(key + ": " + value);
-		})
+		});
 	});
 	
 });
