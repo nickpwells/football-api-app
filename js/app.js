@@ -8,7 +8,7 @@ $(document).ready(function(){
 		data: {"api_key":"RVmnd4sEiJY7PeA0MvQ5UquZW1poBGa3",
 		"stats_type":"offense",
 		'year':'2014',
-		"player_name":"M.Lynch"},
+		"player_name":"P.Manning"},
 		success: function(data, status) {
 			var obj = JSON.parse(data);
 			$.each(obj, function(key, week){
