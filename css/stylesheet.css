@@ -72,17 +72,32 @@ body {
 	text-decoration: none;
 }
 
+.container .player-form .add-player:hover {
+	background: #FF6E40;
+}
+
+.container .player-form .add-player:active {
+	background: #FF6E40;
+}
+
+.container .player-form .add-player:active {
+	outline: 0;
+	background: #FF6E40;
+	position: relative;
+	top: 1px;
+}
+
 .container .player-form .player:focus,
 .container .player-form select:focus{
 	outline: none;
 }
 
-#stats-table,
+.stats-table,
 tr,
 th {
 	border: 1px solid black;
 }
 
-#stats-table * {
+.stats-table * {
 	display: none;
 }

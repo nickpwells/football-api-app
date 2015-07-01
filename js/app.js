@@ -49,24 +49,21 @@ $(document).ready(function(){
     	}
     );
 
-	function generateTable (text){
-		var r = document.createElement('tr');
-		var c = document.createElement('td');
-		var t = document.createTextNode(text);
-
-		this.cell = c.appendChild(t);
-		this.row = r.appendChild(this.cell);
-
-		document.getElementById('stats-table').appendChild(this.row);
-
+	function generateTable(){
+		$.each(stats, function(key, week){
+			$("#stats-table").append("<tr>"+week+"</tr>")
+			$.each(week, function(key, type){
+				$.each(type, function(key, value){
+					$("#stats-table:last-child").append("<td>"+value+"</td>");
+				});
+			});
+		});
 	}
 
-	console.log(stats);
-
-	$.each(stats, function(key, week){
-		$.each(week, function(key, value){
-			alert(key + ": " + value);
-		});
+	$(".add-player").click(function(e){
+		e.preventDefault();
+		$(".player-form *").toggle();
+		$(".stats-table *").toggle();
 	});
 	
 });
