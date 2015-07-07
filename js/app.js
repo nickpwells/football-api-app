@@ -42,28 +42,26 @@ $(document).ready(function(){
 						stats[week]["receiving"] = [0,0,0,0];
 					}
 
+					$('.stats-table').append('<tr></tr>');//create new row in stats table
+					$('.stats-table tr:last-child').append('<th>'+ week + '</th>');//adds week number to first column in table
+
+					$.each(stats[week], function(key, value){
+						$.each(value, function(index, value){
+						$('.stats-table tr:last-child').append('<th>'+value+'</th>');
+						});
+					});
+
 					i += 1;
+
 				});
 			});
 		}
     	}
     );
 
-	function generateTable(){
-		$.each(stats, function(key, week){
-			$("#stats-table").append("<tr>"+week+"</tr>")
-			$.each(week, function(key, type){
-				$.each(type, function(key, value){
-					$("#stats-table:last-child").append("<td>"+value+"</td>");
-				});
-			});
-		});
-	}
-
 	$(".add-player").click(function(e){
 		e.preventDefault();
 		$(".player-form *").toggle();
 		$(".stats-table *").toggle();
 	});
-	
 });

@@ -43,6 +43,7 @@ body {
 	border-color:#00796b; 
 	text-shadow:0px 0px 0px rgba(42,42,42,.75); 
 	box-shadow: -5px 5px 19px 0px rgba(42,42,42,.75); 
+	display: none;
 } 
 
 .container .player-form .player {
@@ -92,12 +93,16 @@ body {
 	outline: none;
 }
 
-.stats-table,
-tr,
-th {
-	border: 1px solid black;
+
+.stats-categories {
+	border: 1px solid red;
 }
 
-.stats-table * {
-	display: none;
+.stats-categories > th {
+	padding: 2px;
+}
+
+.stats-categories:hover {
+	background-color: lightgrey;
+	cursor: pointer;
 }
