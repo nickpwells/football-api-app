@@ -97,8 +97,9 @@ body {
 	top: 1px;
 }
 
-.container .player-form .player:focus,
-.container .player-form select:focus{
+.container .player-form input,
+.container .player-form select,
+#reset {
 	outline: none;
 }
 
@@ -110,8 +111,10 @@ body {
 }
 
 #reset {
-	width: 10em;
+	width: 13em;
+	font-size: 16px;
 	text-align: center;
+	margin-bottom: 2em;
 }
 
 table {

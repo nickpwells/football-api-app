@@ -3,13 +3,19 @@ $(document).ready(function(){
 	var stats = {};//stats object which will be populated by JSON data
 	var i = 1;//used to count each week of stats
 
-	$(".container").on("click", ".button", function(e){
+	$(".container").on("click", ".button[type=submit]", function(e){
 		e.preventDefault();
 		var player_name = formatPlayerName($('.player').val());
 		var season_type = $(".season-type").val();
 		var year = $(".year").val();
 		getPlayerStats(player_name, year);
-		
+	});
+
+	$(".container").on("click", "#reset", function(e){
+		$(".stats").remove();
+		$(".player").val('');//reset form
+		i = 1;//reset counter
+		toggleStats();
 	});
 
 	//takes user input and reformats player name per API requirements
@@ -19,6 +25,11 @@ $(document).ready(function(){
 		var last_name = player_name.slice(space+1);
 		last_name = last_name.charAt(0).toUpperCase() + last_name.slice(1);
 		return first_letter + '.' + last_name;
+	}
+
+	function toggleStats() {
+		$(".player-form *").toggle();
+		$(".stats-table, #reset").toggle();
 	}
 
 	function getPlayerStats(player_name, year) {
@@ -74,10 +85,6 @@ $(document).ready(function(){
 
 					});
 				});
-				function toggleStats() {
-					$(".player-form *").toggle();
-					$(".stats-table").toggle();
-				}
 				toggleStats();
 			}
 		});
