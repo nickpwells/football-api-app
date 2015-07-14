@@ -23,6 +23,10 @@ body {
 	margin-left: .5em;
 }
 
+.container {
+	text-align: center;
+}
+
 .container * {
 	width: 60%;
 	text-align: center;
@@ -99,10 +103,15 @@ body {
 }
 
 
-.stats-table *,
+.stats-table,
 #reset {
 	display: none;
 	font-size: 10px;
+}
+
+#reset {
+	width: 10em;
+	text-align: center;
 }
 
 table {
@@ -122,6 +131,7 @@ table {
 	background-color: #00796B;
 	color: white;
 	height: 2.5em;
+	letter-spacing: .5px;
 }
 
 .stats-categories th {
