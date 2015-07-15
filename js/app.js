@@ -9,13 +9,20 @@ $(document).ready(function(){
 		var season_type = $(".season-type").val();
 		var year = $(".year").val();
 		getPlayerStats(player_name, year);
+		
 	});
 
 	$(".container").on("click", "#reset", function(e){
 		$(".stats").remove();
 		$(".player").val('');//reset form
 		i = 1;//reset counter
-		toggleStats();
+		$(".stats-table, #reset").fadeOut(600, function(){
+			$(".player-form *, .overlay").fadeIn(600);
+		});
+	});
+
+	$('.player').keypress(function(){
+		$(".error").fadeOut(600);
 	});
 
 	//takes user input and reformats player name per API requirements
@@ -28,8 +35,7 @@ $(document).ready(function(){
 	}
 
 	function toggleStats() {
-		$(".player-form *").toggle();
-		$(".stats-table, #reset").toggle();
+		
 	}
 
 	function getPlayerStats(player_name, year) {
@@ -41,51 +47,64 @@ $(document).ready(function(){
 			"player_name": player_name},
 			success: function(data, status) {
 				var obj = JSON.parse(data);
-				$.each(obj, function(key, week){
-					$.each(week, function(key, player_id){
-						var passingObj = this.passing;
-						var rushingObj = this.rushing;
-						var receivingObj = this.receiving;
+				console.log(obj);
+				if ($.isEmptyObject(obj) || obj.errors){
+					$(".error").fadeIn(500);
+				}
+				else {
+					$.each(obj, function(key, week){
+						$.each(week, function(key, player_id){
+							var passingObj = this.passing;
+							var rushingObj = this.rushing;
+							var receivingObj = this.receiving;
 
-						var week = "Week " + i;
-						stats[week] = {};
+							var week = "Week " + i;
+							stats[week] = {};
 
-						//checks if player data contains stats for the current week.  if yes, will populate stats object with appropriate stats
-						if (player_id.hasOwnProperty('passing')) {
-							stats[week]["passing"] = [passingObj.attempts, passingObj.completions, passingObj.yards, passingObj.touchdowns, passingObj.interceptions];
-						}
-						else {
-							stats[week]["passing"] = [0,0,0,0,0];
-						}
+							//checks if player data contains stats for the current week.  if yes, will populate stats object with appropriate stats
+							if (player_id.hasOwnProperty('passing')) {
+								stats[week]["passing"] = [passingObj.attempts, passingObj.completions, passingObj.yards, passingObj.touchdowns, passingObj.interceptions];
+							}
+							else {
+								stats[week]["passing"] = [0,0,0,0,0];
+							}
 
-						if (player_id.hasOwnProperty('rushing')) {
-							stats[week]["rushing"] = [rushingObj.attempts, rushingObj.yards, rushingObj.touchdowns, rushingObj.long];
-						}
-						else {
-							stats[week]["rushing"] = [0,0,0,0];
-						}
+							if (player_id.hasOwnProperty('rushing')) {
+								stats[week]["rushing"] = [rushingObj.attempts, rushingObj.yards, rushingObj.touchdowns, rushingObj.long];
+							}
+							else {
+								stats[week]["rushing"] = [0,0,0,0];
+							}
 
-						if (player_id.hasOwnProperty('receiving')) {
-							stats[week]["receiving"] = [receivingObj.receptions, receivingObj.yards, receivingObj.touchdowns, receivingObj.long];
-						}
-						else {
-							stats[week]["receiving"] = [0,0,0,0];
-						}
+							if (player_id.hasOwnProperty('receiving')) {
+								stats[week]["receiving"] = [receivingObj.receptions, receivingObj.yards, receivingObj.touchdowns, receivingObj.long];
+							}
+							else {
+								stats[week]["receiving"] = [0,0,0,0];
+							}
 
-						$('.stats-table').append('<tr class="stats"></tr>');//create new row in stats table
-						$('.stats-table tr:last-child').append('<td>'+ i + '</td>');//adds week number to first column in table
+							$('.stats-table').append('<tr class="stats"></tr>');//create new row in stats table
+							$('.stats-table tr:last-child').append('<td>'+ i + '</td>');//adds week number to first column in table
 
-						$.each(stats[week], function(key, value){
-							$.each(value, function(index, value){
-							$('.stats-table tr:last-child').append('<td>'+value+'</td>');
+							$.each(stats[week], function(key, value){
+								$.each(value, function(index, value){
+								$('.stats-table tr:last-child').append('<td>'+value+'</td>');
+								});
 							});
+
+							i += 1;
+
 						});
-
-						i += 1;
-
 					});
-				});
-				toggleStats();
+					
+					$(".player-form *, .overlay").fadeOut(600, function(){
+						$(".stats-table, #reset").fadeIn(600);
+					});
+
+				}
+			},
+			error: function(){
+				$(".error").fadeIn(600);
 			}
 		});
 	}
