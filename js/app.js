@@ -7,18 +7,17 @@ $(document).ready(function(){
 		e.preventDefault();
 		var player_name = formatPlayerName($('.player').val());
 		var season_type = $(".season-type").val();
+		season_type = season_type.slice(0,3).toUpperCase();
 		var year = $(".year").val();
-		getPlayerStats(player_name, year);
-		
+		getPlayerStats(player_name, year, season_type);
 	});
 
 	$(".container").on("click", "#reset", function(e){
 		$(".stats").remove();
 		$(".player").val('');//reset form
 		i = 1;//reset counter
-		$(".stats-table, #reset").fadeOut(600, function(){
-			$(".player-form *, .overlay").fadeIn(600);
-		});
+		$(".stats-table, #reset").toggle();
+		$(".player-form *, .overlay").toggle();
 	});
 
 	$('.player').keypress(function(){
@@ -34,17 +33,14 @@ $(document).ready(function(){
 		return first_letter + '.' + last_name;
 	}
 
-	function toggleStats() {
-		
-	}
-
-	function getPlayerStats(player_name, year) {
+	function getPlayerStats(player_name, year, season_type) {
 		$.ajax('https://profootballapi.com/players', 
 			{type: 'POST', 
 			data: {"api_key":"RVmnd4sEiJY7PeA0MvQ5UquZW1poBGa3",
 			"stats_type":"offense",
 			'year': year,
-			"player_name": player_name},
+			"player_name": player_name,
+			"season_type": season_type},
 			success: function(data, status) {
 				var obj = JSON.parse(data);
 				console.log(obj);
@@ -97,9 +93,8 @@ $(document).ready(function(){
 						});
 					});
 					
-					$(".player-form *, .overlay").fadeOut(600, function(){
-						$(".stats-table, #reset").fadeIn(600);
-					});
+					$(".player-form *, .overlay").toggle();
+					$(".stats-table, #reset").toggle();
 
 				}
 			},
