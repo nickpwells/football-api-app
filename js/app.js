@@ -17,12 +17,24 @@ $(document).ready(function(){
 		$(".player").val('');//reset form
 		i = 1;//reset counter
 		$(".stats-table, #reset").toggle();
-		$(".player-form *, .overlay").toggle();
+		$(".player-form *").toggle();
 	});
 
 	$('.player').keypress(function(){
 		$(".error").fadeOut(600);
 	});
+
+	$(".help-button").click(function(e){
+		e.preventDefault();
+		$(".help").fadeIn(400);
+		$(".player-form *").toggle();
+	});
+
+	$("#close-help").click(function(e){
+		e.preventDefault();
+		$(".help").fadeOut(400);
+		$(".player-form *").toggle();
+	})
 
 	//takes user input and reformats player name per API requirements
 	function formatPlayerName(player_name) {

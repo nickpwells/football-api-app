@@ -23,8 +23,40 @@ body {
 	margin-left: .5em;
 }
 
-.container {
+.title-container .help-button {
+	position: relative;
+	float: right;
+	color: white;
+	margin: 2.5em 3em 0 0;
+	cursor: pointer;
+	font-family: 'Roboto Slab', sans-serif;
+	font-size: 1.5em;
+}
+
+.help {
+	position: absolute;
+	color: #ECEFF1;
+	left: 0;
+	right: 0;
+	height: auto;
+	width: 23em;
+	margin: 1em auto 0 auto;
+	padding: 0 .6em 0 .6em;
+	z-index: 9999;
+	background-color: #DD2C00;
+	border-radius: 12px;
+	display: none;
+}
+
+.help p br {
+	display: block;
+	line-height: 32px;
+}
+
+.container,
+.help {
 	text-align: center;
+	font-family: 'Roboto Slab', sans-serif;
 }
 
 .container form input,
@@ -68,7 +100,8 @@ body {
 }
 
 .container .player-form .button,
-#reset {
+#reset,
+#close-help {
 	width: 7.5em;
 	-webkit-border-radius: 26;
 	-moz-border-radius: 26;
@@ -102,8 +135,16 @@ body {
 
 .container .player-form input,
 .container .player-form select,
-#reset {
+#reset,
+#close-help {
 	outline: none;
+}
+
+#close-help {
+	background-color: #00796B;
+	margin-bottom: .5em;
+	width: auto;
+	height: auto;
 }
 
 .error {
